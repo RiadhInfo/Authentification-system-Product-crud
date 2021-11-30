@@ -15,13 +15,13 @@ use App\Http\Controllers\UserController;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+Route::get('/', function () {
+    return view('login');
+});
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
 Route::get('/edit-product/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
 Route::put('/edit-product/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('products.update');
@@ -31,9 +31,13 @@ Route::delete('/delete-product/{id}', [App\Http\Controllers\ProductController::c
 
 Auth::routes();
 
-Route::get('/', function() {
+Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
+
+Route::get('/logout', function() {
+    return view('login');
+})->middleware('auth');
 
 Route::resource('users', UserController::class)
     ->middleware('auth');
