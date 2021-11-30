@@ -63,11 +63,7 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
-        ],
-        'woods' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Wood::class,
-        ],
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
