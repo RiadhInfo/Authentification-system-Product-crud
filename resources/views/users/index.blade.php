@@ -3,7 +3,7 @@
 @section('title', 'List User')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">List User</h1>
+    <h1 class="m-0 text-dark">Liste des utilisateurs</h1>
 @stop
 
 @section('content')
@@ -13,16 +13,16 @@
                 <div class="card-body">
 
                     <a href="{{route('users.create')}}" class="btn btn-primary mb-2">
-                        Tambah
+                        Ajouter utilisateur
                     </a>
 
                     <table class="table table-hover table-bordered table-stripped" id="example2">
                         <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Nama</th>
+                            <th>Nom</th>
                             <th>Email</th>
-                            <th>Opsi</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -33,10 +33,10 @@
                                 <td>{{$user->email}}</td>
                                 <td>
                                     <a href="{{route('users.edit', $user)}}" class="btn btn-primary btn-xs">
-                                        Edit
+                                        Editer
                                     </a>
                                     <a href="{{route('users.destroy', $user)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                        Delete
+                                        Supprimer
                                     </a>
                                 </td>
                             </tr>
@@ -62,7 +62,7 @@
 
         function notificationBeforeDelete(event, el) {
             event.preventDefault();
-            if (confirm('Apakah anda yakin akan menghapus data ? ')) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer les données ?')) {
                 $("#delete-form").attr('action', $(el).attr('href'));
                 $("#delete-form").submit();
             }

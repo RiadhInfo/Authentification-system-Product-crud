@@ -15,17 +15,23 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
+Route::get('/edit-product/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('products.edit');
+Route::put('/edit-product/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('products.update');
+Route::get('/add-product', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
+Route::post('/add-product', [App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
+Route::delete('/delete-product/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('products.destroy');
 
 Auth::routes();
 
-Route::get('/home', function() {
+Route::get('/', function() {
     return view('home');
 })->name('home')->middleware('auth');
 

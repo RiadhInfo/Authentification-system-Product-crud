@@ -49,7 +49,7 @@ class UserController extends Controller
         $array['password'] = bcrypt($array['password']);
         $user = User::create($array);
         return redirect()->route('users.index')
-            ->with('success_message', 'Berhasil menambah user baru');
+            ->with('success_message', 'Un nouvel utilisateur a été ajouté avec succès');
     }
 
     /**
@@ -73,7 +73,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if (!$user) return redirect()->route('users.index')
-            ->with('error_message', 'User dengan id'.$id.' tidak ditemukan');
+            ->with('error_message', 'Utilisateur avec id'.$id.' non trouvé');
         return view('users.edit', [
             'user' => $user
         ]);
@@ -99,7 +99,7 @@ class UserController extends Controller
         if ($request->password) $user->password = bcrypt($request->password);
         $user->save();
         return redirect()->route('users.index')
-            ->with('success_message', 'Berhasil mengubah user');
+            ->with('success_message', 'Utilisateur modifié avec succès');
     }
 
     /**
@@ -112,9 +112,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if ($id == $request->user()->id) return redirect()->route('users.index')
-            ->with('error_message', 'Anda tidak dapat menghapus diri sendiri.');
+            ->with('error_message', 'Vous ne pouvez pas vous supprimer.');
         if ($user) $user->delete();
         return redirect()->route('users.index')
-            ->with('success_message', 'Berhasil menghapus user');
+            ->with('success_message', 'Utilisateur supprimé avec succès');
     }
 }
